@@ -48,12 +48,14 @@ exports.delete_a_user = function(req, res) {
     console.log("I am Auth");
     var username = req.body.user,
             password = req.body.pass;
-      Login.findOne({'local.user': req.params.user},function (err,user) {
+            console.log("param -" + username);
+            console.log("param -" + password);
+      Login.findOne(where = {user: username},function (err,user1) {
       if (err)
-        res.send(err);
-      console.log(password); 
-      console.log(user.pass); 
-       if(user.pass!=password)
+        res.send(err); 
+      console.log(user1.user); 
+      console.log(user1.pass); 
+       if(user1.pass!=password)
       res.json({ message: 'Login Unsuccessfull' });
       else
       res.json({ message: 'Logged in successfully'});
