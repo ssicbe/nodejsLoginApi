@@ -2,7 +2,10 @@
 
 # Create app directory
 
-WORKDIR /usr/src/docker-loginapi
+RUN mkdir -p /usr/src/app
+RUN mkdir -p /data/db
+
+WORKDIR /usr/src/app
 
 # Install app dependencies
 
@@ -10,21 +13,17 @@ WORKDIR /usr/src/docker-loginapi
 
 # where available (npm@5+)
 
-COPY package*.json ./
+COPY package*.json /usr/src/app/
 
-RUN npm install --save-dev nodemon
-RUN npm install express --save
-RUN npm install --silent
-RUN npm install mongoose --save
-RUN npm install body-parser
-
+RUN npm install 
+#RUN npm install mongodb --save
 #To bundle your app’s source code inside the Docker image, use the COPY instruction:
 
-COPY . .
+COPY . /usr/src/app/
 
 #Your app binds to port 3000 so you’ll use the EXPOSE instruction to have it mapped by the docker daemon:
 
-EXPOSE 2000
+EXPOSE 3000
+#cMD node server.js
+CMD [ "npm", "start" ]
 
-CMD [“npm”, “start run”]
-CMD [“mongod"]
