@@ -1,4 +1,4 @@
-ï»¿FROM node:carbon
+FROM node:carbon
 
 # Create app directory
 
@@ -16,12 +16,13 @@ WORKDIR /usr/src/app
 COPY package*.json /usr/src/app/
 
 RUN npm install 
-#RUN npm install mongodb --save
-#To bundle your appâ€™s source code inside the Docker image, use the COPY instruction:
+RUN npm install cors --save
+
+#To bundle your app’s source code inside the Docker image, use the COPY instruction:
 
 COPY . /usr/src/app/
 
-#Your app binds to port 3000 so youâ€™ll use the EXPOSE instruction to have it mapped by the docker daemon:
+#Your app binds to port 3000 so you’ll use the EXPOSE instruction to have it mapped by the docker daemon:
 
 EXPOSE 3000
 #cMD node server.js
