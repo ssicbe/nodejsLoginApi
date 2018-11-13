@@ -1,5 +1,5 @@
 'use strict'
-console.log('Hello Starting Server');
+console.log('Hello Starting Node App Server');
 
 var cors =require('cors');
 var express = require('express'),
